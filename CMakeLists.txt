@@ -34,11 +34,6 @@ add_dependencies(glwrapper-test gtest)
 include_directories(${gtest_INCLUDE_DIRS})
 target_link_libraries(glwrapper-test ${gtest_LIBRARIES})
 
-# find system OpenGL headers and libraries
+# find system OpenGL and library
 find_package(OpenGL REQUIRED)
-if(APPLE)
-    include_directories("${OPENGL_INCLUDE_DIR}/OpenGL")
-else()
-    include_directories("${OPENGL_INCLUDE_DIR}/gl")
-endif()
 target_link_libraries(glwrapper-test ${OPENGL_gl_LIBRARY})

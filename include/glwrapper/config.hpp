@@ -23,7 +23,8 @@
 
     #if defined(GLWRAPPER_PROFILE_DESKTOP) && defined(GLWRAPPER_PROFILE_ES)
         #error Defined both GLWRAPPER_PROFILE_DESKTOP and GLWRAPPER_PROFILE_ES.
-    #else
+        #undef GLWRAPPER_PROFILE_ES
+    #endif
 
     #if !defined(GLWRAPPER_PROFILE_DESKTOP) && !defined(GLWRAPPER_PROFILE_ES)
         // will define a profile based off the target OS/platform
@@ -35,6 +36,7 @@
     #endif
 
     #if defined(GLWRAPPER_PROFILE_DESKTOP)
+        #define GL_GLEXT_PROTOTYPES
         #include "GL/glcorearb.h"
     #else
         #include "GLES3/gl32.h"
@@ -49,7 +51,7 @@ enum class Profile {
     ES
 };
 
-constexpr getProfile() {
+constexpr Profile getProfile() {
 #ifdef GLWRAPPER_PROFILE_DESKTOP
     return Profile::DESKTOP;
 #elif GLWRAPPER_PROFILE_ES
