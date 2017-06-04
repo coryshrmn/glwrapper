@@ -1,30 +1,45 @@
 #ifndef GLWRAPPER_CONFIG_HPP
 #define GLWRAPPER_CONFIG_HPP
 
-#ifndef GL_VERSION
-    // If you don't include OpenGL headers before including GLWrapper,
-    // we will try to find the target's default OpenGL headers
-    #include "glwrapper/system_gl.hpp"
-#endif
+#if defined(GL_VERSION)
 
-#ifdef GL_VERSION_3_2
-    #define GLWRAPPER_HAS_GEOMETRY_SHADER
-#endif
+    // OpenGL headers can be included before GLWrapper,
+    // but they must be OpenGL 4.5+ or OpenGLES 3.2+.
 
-#ifdef GL_VERSION_4_0
-    #define GLWRAPPER_HAS_TESS_SHADER
-#endif
+    #if defined(GL_VERSION_4_5)
+        #define GLWRAPPER_PROFILE_DESKTOP
+        #undef GLWRAPPER_PROFILE_ES
+    #elif defined(GL_ES_VERSION_3_2)
+        #define GLWRAPPER_PROFILE_ES
+        #undef GLWRAPPER_PROFILE_DESKTOP
+    #else
+        #error OpenGL header version not supported. GLWrapper can only use headers for OpenGL 4.5+ or OpenGLES 3.2+
+    #endif
 
-#ifdef GL_VERSION_4_3
-    #define GLWRAPPER_HAS_COMPUTE_SHADER
-#endif
-
-#if defined(GL_VERSION_2_0)
-    #define GLWRAPPER_PROFILE_DESKTOP
-#elif defined(GL_ES_VERSION_2_0)
-    #define GLWRAPPER_PROFILE_ES
 #else
-    #error GLWrapper requires OpenGL 2.0+ or OpenGLES 2.0+
+
+    // GLWrapper ships with its own OpenGL 4.5 and OpenGLES 3.2 headers.
+    // You can force the GL API Profile type (OpenGL or OpenGLES) by defining GLWRAPPER_PROFILE_DESKTOP or GLWRAPPER_PROFILE_ES
+
+    #if defined(GLWRAPPER_PROFILE_DESKTOP) && defined(GLWRAPPER_PROFILE_ES)
+        #error Defined both GLWRAPPER_PROFILE_DESKTOP and GLWRAPPER_PROFILE_ES.
+    #else
+
+    #if !defined(GLWRAPPER_PROFILE_DESKTOP) && !defined(GLWRAPPER_PROFILE_ES)
+        // will define a profile based off the target OS/platform
+        #if TARGET_OS_IPHONE || defined(__ANDROID__) || defined(__EMSCRIPTEN__)
+            #define GLWRAPPER_PROFILE_ES
+        #else
+            #define GLWRAPPER_PROFILE_DESKTOP
+        #endif
+    #endif
+
+    #if defined(GLWRAPPER_PROFILE_DESKTOP)
+        #include "GL/glcorearb.h"
+    #else
+        #include "GLES3/gl32.h"
+    #endif
+
 #endif
 
 namespace glwrapper {
