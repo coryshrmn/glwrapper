@@ -2,7 +2,8 @@
 #define GLWRAPPER_CONFIG_HPP
 
 #ifndef GL_VERSION
-    #error "OpenGL headers not included before glwrapper"
+    // GLWrapper will try to find the system's OpenGL headers if you didn't include them yourself.
+    #include "glwrapper/system_gl.hpp"
 #endif
 
 #ifdef GL_VERSION_3_2

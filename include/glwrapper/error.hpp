@@ -1,11 +1,13 @@
 #ifndef GLWRAPPER_ERROR_HPP
 #define GLWRAPPER_ERROR_HPP
 
+#include "glwrapper/config.hpp"
+
 #include <stdexcept>
 
 namespace glwrapper {
 
-enum class ErrorCode : GLEnum {
+enum class ErrorCode : GLenum {
     NO_ERROR = 0,
     INVALID_ENUM = 0x0500,
     INVALID_VALUE = 0x0501,
@@ -20,17 +22,18 @@ enum class ErrorCode : GLEnum {
 
 inline const char* getErrorName(ErrorCode errorCode) {
     switch(errorCode) {
-    case NO_ERROR: return "NO_ERROR";
-    case INVALID_ENUM: return "INVALID_ENUM";
-    case INVALID_VALUE: return "INVALID_VALUE";
-    case INVALID_OPERATION: return "INVALID_OPERATION";
-    case STACK_OVERFLOW: return "STACK_OVERFLOW";
-    case STACK_UNDERFLOW: return "STACK_UNDERFLOW";
-    case OUT_OF_MEMORY: return "OUT_OF_MEMORY";
-    case INVALID_FRAMEBUFFER_OPERATION: return "INVALID_FRAMEBUFFER_OPERATION";
-    case CONTEXT_LOST: return "CONTEXT_LOST";
-    case TABLE_TOO_LARGE: return "TABLE_TOO_LARGE";
+    case ErrorCode::NO_ERROR: return "NO_ERROR";
+    case ErrorCode::INVALID_ENUM: return "INVALID_ENUM";
+    case ErrorCode::INVALID_VALUE: return "INVALID_VALUE";
+    case ErrorCode::INVALID_OPERATION: return "INVALID_OPERATION";
+    case ErrorCode::STACK_OVERFLOW: return "STACK_OVERFLOW";
+    case ErrorCode::STACK_UNDERFLOW: return "STACK_UNDERFLOW";
+    case ErrorCode::OUT_OF_MEMORY: return "OUT_OF_MEMORY";
+    case ErrorCode::INVALID_FRAMEBUFFER_OPERATION: return "INVALID_FRAMEBUFFER_OPERATION";
+    case ErrorCode::CONTEXT_LOST: return "CONTEXT_LOST";
+    case ErrorCode::TABLE_TOO_LARGE: return "TABLE_TOO_LARGE";
     default: return "UNKNOWN_ERROR";
+    }
 }
 
 inline ErrorCode getErrorCode() {
@@ -49,7 +52,7 @@ public:
         return errorCode;
     }
 
-    const char* what() const override {
+    const char* what() const noexcept override {
         return getErrorName(errorCode);
     }
 };
