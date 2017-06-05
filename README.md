@@ -4,7 +4,7 @@ Header-only C++ wrapper for modern OpenGL and OpenGLES
 
 ## Features
 
-* Full support for OpenGL 3.2 - 4.5 core profile, and OpenGLES 2.0 - 3.2
+* Support for OpenGL 3.2 - 4.5 core profile, and OpenGLES 2.0 - 3.2
 
 * C++11 syntax, RAII with move support
 
@@ -23,6 +23,26 @@ Header-only C++ wrapper for modern OpenGL and OpenGLES
 ## Status
 
 Barely started
+
+### Supported
+
+* errors (error codes, error names, get error, check error and throw)
+* shaders (compile, get compilation status and info log)
+
+### Roadmap
+
+1. Finish core features
+  * programs
+  * buffers
+  * uniforms
+  * attributes
+  * textures
+  * misc gl functions
+2. Nice to have features
+  * binary shaders/programs
+  * direct state access
+3. Popular extensions
+4. (Maybe) some more obscure OpenGL functions
 
 ## Testing
 
