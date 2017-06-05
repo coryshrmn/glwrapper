@@ -1,5 +1,5 @@
-#ifndef GLWRAPPER_CONFIG_HPP
-#define GLWRAPPER_CONFIG_HPP
+#ifndef GLWRAPPER_PROFILE_HPP
+#define GLWRAPPER_PROFILE_HPP
 
 #if defined(GL_VERSION)
 
@@ -63,4 +63,4 @@ constexpr Profile getProfile() {
 
 } // namespace glwrapper
 
-#endif // #ifndef GLWRAPPER_CONFIG_HPP
+#endif // #ifndef GLWRAPPER_PROFILE_HPP

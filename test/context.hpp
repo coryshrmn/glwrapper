@@ -7,7 +7,7 @@ Creates a GL context using SDL2 and glew 2
 
 #include "GL/glew.h"
 
-#include "glwrapper/config.hpp"
+#include "glwrapper/profile.hpp"
 
 #include "SDL.h"
 

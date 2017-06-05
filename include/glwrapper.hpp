@@ -1,7 +1,10 @@
 #ifndef GLWRAPPER_HPP
 #define GLWRAPPER_HPP
 
-#include "glwrapper/config.hpp"
+// profile.hpp is always included first (all headers require it)
+// it includes OpenGL headers if needed, and defines Profile enum and getProfile()
+#include "glwrapper/profile.hpp"
+
 #include "glwrapper/error.hpp"
 
 #endif // #ifndef GLWRAPPER_HPP

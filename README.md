@@ -8,7 +8,9 @@ Header-only C++ wrapper for modern OpenGL and OpenGLES
 
 * Modern C++11 syntax, RAII with move support
 
-* No heap allocations
+* Optional support for C++17 string\_view
+
+* No heap allocations, unless specified (function names ending with "Alloc")
 
 * Header-only
 
@@ -20,4 +22,4 @@ Barely started
 
 ## Tests
 
-Comprehensive unit tests Googletest and SDL2
+Comprehensive unit tests Googletest, using SDL2 and glew 2
