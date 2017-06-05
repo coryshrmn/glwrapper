@@ -28,15 +28,15 @@ namespace detail {
         using Traits = ResourceTraits<T>;
 
     public:
-        using Handle = Traits::Handle;
+        using Handle = typename Traits::Handle;
         
     private:
         Handle handle;
 
     public:
 
-        Resource(Handle handle = Handle{}) {
-            :handle(handle) {
+        Resource(Handle handle = Handle{})
+            : handle(handle) {
         }
 
         Resource(const Resource& source) = delete;

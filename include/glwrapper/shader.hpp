@@ -5,9 +5,7 @@
 
 #include "glwrapper/detail/resource.hpp"
 
-#ifndef GLWRAPPER_NO_STRING_VIEW
-#include <string_view>
-#endif
+#include "glwrapper/string_view.hpp"
 
 namespace glwrapper {
 
@@ -17,7 +15,7 @@ namespace detail {
     template <>
     struct ResourceTraits<ShaderResourceTag> {
         using Handle = GLuint;
-        void destroy(Handle handle) {
+        static void destroy(Handle handle) {
             glDeleteShader(handle);
         }
     };
@@ -32,7 +30,7 @@ enum class ShaderType : GLenum {
     GEOMETRY = GL_GEOMETRY_SHADER,
     TESS_CONTROL = GL_TESS_CONTROL_SHADER,
     TESS_EVALUATION = GL_TESS_EVALUATION_SHADER,
-    VERTEX = GL_VERTEX_SHADER;
+    VERTEX = GL_VERTEX_SHADER
 };
 
 class Shader {
@@ -41,7 +39,7 @@ private:
         COMPILE_STATUS = GL_COMPILE_STATUS,
         DELETE_STATUS = GL_DELETE_STATUS,
         INFO_LOG_LENGTH = GL_INFO_LOG_LENGTH,
-        SHADER_TYPE = GL_SHADER_TYPE;
+        SHADER_TYPE = GL_SHADER_TYPE
     };
 
     detail::ShaderResource shaderResource;
@@ -58,7 +56,7 @@ public:
     }
 
 #ifndef GLWRAPPER_NO_STRING_VIEW
-    void setSource(std::string_view source) {
+    void setSource(string_view source) {
         const char* data = source.data();
         int length = source.length();
         setSource(1, &data, &length);
@@ -110,7 +108,7 @@ private:
         glGetShaderiv(shaderResource.getHandle(), static_cast<GLenum>(parameter), &result);
         return result;
     }
-}
+};
 
 } // namespace glwrapper
 
