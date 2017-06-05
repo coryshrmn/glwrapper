@@ -1,23 +1,22 @@
 #ifndef GLWRAPPER_ERROR_HPP
 #define GLWRAPPER_ERROR_HPP
 
-#include "glwrapper/config.hpp"
+#include "glwrapper/profile.hpp"
 
 #include <stdexcept>
 
 namespace glwrapper {
 
 enum class ErrorCode : GLenum {
-    NO_ERROR = 0,
-    INVALID_ENUM = 0x0500,
-    INVALID_VALUE = 0x0501,
-    INVALID_OPERATION = 0x0502,
-    STACK_OVERFLOW = 0x0503,
-    STACK_UNDERFLOW = 0x0504,
-    OUT_OF_MEMORY = 0x0505,
-    INVALID_FRAMEBUFFER_OPERATION = 0x0506,
-    CONTEXT_LOST = 0x0507,
-    TABLE_TOO_LARGE = 0x8031
+    NO_ERROR = GL_NO_ERROR,
+    INVALID_ENUM = GL_INVALID_ENUM,
+    INVALID_VALUE = GL_INVALID_VALUE,
+    INVALID_OPERATION = GL_INVALID_OPERATION,
+    STACK_OVERFLOW = GL_STACK_OVERFLOW,
+    STACK_UNDERFLOW = GL_STACK_UNDERFLOW,
+    OUT_OF_MEMORY = GL_OUT_OF_MEMORY,
+    INVALID_FRAMEBUFFER_OPERATION = GL_INVALID_FRAMEBUFFER_OPERATION,
+    CONTEXT_LOST = GL_CONTEXT_LOST;
 };
 
 inline const char* getErrorName(ErrorCode errorCode) {
@@ -31,7 +30,6 @@ inline const char* getErrorName(ErrorCode errorCode) {
     case ErrorCode::OUT_OF_MEMORY: return "OUT_OF_MEMORY";
     case ErrorCode::INVALID_FRAMEBUFFER_OPERATION: return "INVALID_FRAMEBUFFER_OPERATION";
     case ErrorCode::CONTEXT_LOST: return "CONTEXT_LOST";
-    case ErrorCode::TABLE_TOO_LARGE: return "TABLE_TOO_LARGE";
     default: return "UNKNOWN_ERROR";
     }
 }
