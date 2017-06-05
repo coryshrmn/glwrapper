@@ -1,6 +1,10 @@
 # The glwrapper library is header only, and does not require any compilation.
 # This CMakeLists.txt builds glwrapper tests.
 
+# The glwrapper tests depend on:
+# SDL2
+# glew 2.0.0+
+
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -8,6 +12,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(glwrapper-test)
 enable_testing()
+
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include_directories(include)
 
@@ -34,6 +40,16 @@ add_dependencies(glwrapper-test gtest)
 include_directories(${gtest_INCLUDE_DIRS})
 target_link_libraries(glwrapper-test ${gtest_LIBRARIES})
 
-# find system OpenGL and library
+# find OpenGL library
 find_package(OpenGL REQUIRED)
 target_link_libraries(glwrapper-test ${OPENGL_gl_LIBRARY})
+
+# find glew 2
+find_package(glew 2 REQUIRED)
+include_directories(${GLEW_INCLUDE_DIRS})
+target_link_libraries(glwrapper-test ${GLEW_LIBRARIES})
+
+# find SDL2
+find_package(SDL2 REQUIRED)
+include_directories(${SDL2_INCLUDE_DIR})
+target_link_libraries(glwrapper-test ${SDL2_LIBRARY})
