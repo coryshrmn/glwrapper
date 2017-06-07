@@ -8,7 +8,7 @@ Header-only C++ wrapper for modern OpenGL and OpenGLES
 
 * C++11 syntax, RAII with move support
 
-* Optionally supports C++17 string\_view or boost::string\_view
+* Optionally supports C++17 `string_view` or `boost::string_view`
 
 * Minimal heap allocations.
   All features of OpenGL can be used without any GLWrapper allocations.
@@ -43,6 +43,30 @@ Barely started
   * direct state access
 3. Popular extensions
 4. (Maybe) some more obscure OpenGL functions
+
+## Using GLWrapper
+
+### Including GLWrapper
+
+You can download everything in the [include](include) directory,
+add `#include "glwrapper.hpp"` in your code.
+GLWrapper will work out of the box.
+
+If you include your own OpenGL 4.5+ or OpenGL ES 2.0+ header files before including GLWrapper,
+then you don't need the [GL](include/GL), [GLES3](include/GLES3), or [KHR](include/KHR) directories.
+
+If your compiler has full C++17 support,
+you use `boost::string_view` by defining `GLWRAPPER_BOOST_STRING_VIEW`,
+or you disable GLWrapper `string_view` support by defining `GLWRAPPER_NO_STRING_VIEW`,
+then you don't need the [stx](stx) directory.
+
+### Compling GLWrapper
+
+GLWrapper is header only, there is nothing to compile.
+
+### Examples
+
+See [test](test) files.
 
 ## Testing
 
