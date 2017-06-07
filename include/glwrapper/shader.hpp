@@ -7,6 +7,12 @@
 
 #include "glwrapper/string_view.hpp"
 
+// unique_ptr
+#include <memory>
+
+// pair
+#include <utility>
+
 namespace glwrapper {
 
 namespace detail {
@@ -95,7 +101,7 @@ public:
     // allocates a new buffer and loads the shader info log
     // returns {string, length (excluding null terminator)}
     // throws std::bad_alloc
-    std::tuple<std::unique_ptr<char[]>, int> getInfoLogAlloc() const {
+    std::pair<std::unique_ptr<char[]>, int> getInfoLogAlloc() const {
         int size = getInfoLogLength();
         std::unique_ptr<char[]> buffer { new char[size] };
         int sizeNoNull = getInfoLog(size, buffer.get());

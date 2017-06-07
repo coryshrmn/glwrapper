@@ -6,6 +6,8 @@
 
 #include "glwrapper/shader.hpp"
 
+#include <iostream>
+
 #ifdef GLWRAPPER_PROFILE_DESKTOP
 // OpenGL core profile always supports Shading Language 1.40
 const char* shaderVersionLine = "#version 140\n";
@@ -20,16 +22,15 @@ const char* shaderVersionLine = "#version 100\n";
 #define GLSL_VARYING_FRAG = "varying "
 #endif
 
-const char* shaderErrorLine = "#error\n";
+using glwrapper::Shader;
+using glwrapper::ShaderType;
 
 TEST(Shader, CompileFail) {
-    using namespace glwrapper;
-
     Context context;
 
     const char* sourceStrings[] = {
         shaderVersionLine,
-        shaderErrorLine
+        "#error\n"
     };
 
     Shader shader(ShaderType::VERTEX);
@@ -39,9 +40,24 @@ TEST(Shader, CompileFail) {
     EXPECT_EQ(shader.getCompileSucceeded(), false);
 }
 
-TEST(Shader, VertexCompile) {
-    using namespace glwrapper;
+TEST(Shader, CompileFailInfoLog) {
+    Context context;
 
+    const char* sourceStrings[] = {
+        shaderVersionLine,
+        "#error CompileFailInfoLog\n"
+    };
+
+    Shader shader(ShaderType::VERTEX);
+    shader.setSource(sizeof(sourceStrings) / sizeof(sourceStrings[0]), sourceStrings);
+    shader.compile();
+
+    std::string infoLog {shader.getInfoLogAlloc().first.get()};
+    bool foundErrorMessage = infoLog.find("CompileFailInfoLog") != std::string::npos;
+    EXPECT_TRUE(foundErrorMessage);
+}
+
+TEST(Shader, VertexCompile) {
     Context context;
 
     const char* sourceStrings[] = {
