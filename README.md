@@ -48,8 +48,8 @@ Barely started
 
 ### Including GLWrapper
 
-You can download everything in the [include](include) directory,
-add `#include "glwrapper.hpp"` in your code.
+You can add the [include](include) directory to your project,
+and add `#include "glwrapper.hpp"` in your code.
 GLWrapper will work out of the box.
 
 If you include your own OpenGL 4.5+ or OpenGL ES 2.0+ header files before including GLWrapper,
@@ -57,7 +57,7 @@ then you don't need the [GL](include/GL), [GLES3](include/GLES3), or [KHR](inclu
 
 If your compiler has full C++17 support,
 you use `boost::string_view` by defining `GLWRAPPER_BOOST_STRING_VIEW`,
-or you disable GLWrapper `string_view` support by defining `GLWRAPPER_NO_STRING_VIEW`,
+or you disable GLWrapper's `string_view` support by defining `GLWRAPPER_NO_STRING_VIEW`,
 then you don't need the [stx](stx) directory.
 
 ### Compling GLWrapper
@@ -70,7 +70,7 @@ See [test](test) files.
 
 ## Testing
 
-GLWrapper has a Comprehensive unit test suite, using Googletest, SDL2 and glew 2.
+GLWrapper has a comprehensive unit test suite, using Googletest, SDL2 and glew 2.
 Tests are built with CMake.
 
 ### Testing Requirements
