@@ -53,7 +53,7 @@ public:
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, majorRequest);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, minorRequest);
 
-        window = SDL_CreateWindow("glwrapper-test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_OPENGL);
+        window = SDL_CreateWindow("glwrapper-test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_HIDDEN | SDL_WINDOW_OPENGL);
         if(!window) {
             throw std::runtime_error("SDL_CreateWindow");
         }
