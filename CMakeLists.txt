@@ -20,6 +20,7 @@ include_directories(include)
 # main test
 add_executable(glwrapper-test
     test/error.cpp
+    test/shader.cpp
 )
 add_test(NAME glwrapper-test COMMAND glwrapper-test)
 
