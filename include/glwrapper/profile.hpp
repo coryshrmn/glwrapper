@@ -27,7 +27,7 @@
     #endif
 
     #if !defined(GLWRAPPER_PROFILE_DESKTOP) && !defined(GLWRAPPER_PROFILE_ES)
-        // will define a profile based off the target OS/platform
+        // define a profile based off the target OS/platform
         #if TARGET_OS_IPHONE || defined(__ANDROID__) || defined(__EMSCRIPTEN__)
             #define GLWRAPPER_PROFILE_ES
         #else
