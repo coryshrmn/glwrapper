@@ -4,8 +4,7 @@
 #include "glwrapper/profile.hpp"
 
 #include "glwrapper/detail/resource.hpp"
-
-#include "glwrapper/string_view.hpp"
+#include "glwrapper/detail/string_view.hpp"
 
 // unique_ptr
 #include <memory>
@@ -62,7 +61,7 @@ public:
     }
 
 #ifndef GLWRAPPER_NO_STRING_VIEW
-    void setSource(string_view source) {
+    void setSource(detail::string_view source) {
         const char* data = source.data();
         int length = source.length();
         setSource(1, &data, &length);
