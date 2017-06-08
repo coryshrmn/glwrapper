@@ -49,6 +49,7 @@ namespace detail {
         Resource& operator=(const Resource& source) = delete;
 
         Resource& operator=(Resource&& source) {
+            this->~Resource();
             handle = source.handle;
             source.handle = Handle{};
             return *this;
@@ -57,6 +58,7 @@ namespace detail {
         ~Resource() {
             if(handle != Handle{}) {
                 Traits::destroy(handle);
+                handle = Handle{};
             }
         }
 
@@ -65,6 +67,7 @@ namespace detail {
         }
 
         void setHandle(Handle handle) {
+            this->~Resource();
             this->handle = handle;
         }
     };
