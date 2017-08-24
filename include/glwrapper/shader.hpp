@@ -52,8 +52,12 @@ private:
 public:
     Shader() = default;
 
-    Shader(ShaderType shaderType)
+    explicit Shader(ShaderType shaderType)
         : shaderResource(glCreateShader(static_cast<GLenum>(shaderType))) {
+    }
+
+    GLuint getHandle() const {
+        return shaderResource.getHandle();
     }
 
     bool exists() const {

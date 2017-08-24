@@ -22,7 +22,7 @@ Header-only C++ wrapper for modern OpenGL and OpenGLES
 
 ## Status
 
-Barely started
+Barely started. Initial goal is to support use cases for my game.
 
 ### Supported
 
