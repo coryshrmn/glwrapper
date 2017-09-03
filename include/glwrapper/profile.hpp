@@ -4,7 +4,7 @@
 #if defined(GL_VERSION)
 
     // OpenGL headers can be included before GLWrapper,
-    // but they must be OpenGL 4.5+ or OpenGLES 3.2+.
+    // but they must be OpenGL 4.5+.
 
     #if !defined(GL_VERSION_4_5)
         #error OpenGL header version not supported. GLWrapper can only use headers for OpenGL 4.5+
