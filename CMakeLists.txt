@@ -17,10 +17,24 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include_directories(include)
 
+set(GLWRAPPER_HEADERS
+    "include/glwrapper.hpp"
+    "include/glwrapper/buffer.hpp"
+    "include/glwrapper/detail/resource.hpp"
+    "include/glwrapper/detail/string_view.hpp"
+    "include/glwrapper/error.hpp"
+    "include/glwrapper/profile.hpp"
+    "include/glwrapper/program.hpp"
+    "include/glwrapper/shader.hpp"
+    "include/glwrapper/uniform.hpp"
+    "include/glwrapper/vertex_array.hpp"
+)
+
 # main test
 add_executable(glwrapper-test
     test/error.cpp
     test/shader.cpp
+    ${GLWRAPPER_HEADERS}
 )
 add_test(NAME glwrapper-test COMMAND glwrapper-test)
 
@@ -46,7 +60,7 @@ find_package(OpenGL REQUIRED)
 target_link_libraries(glwrapper-test ${OPENGL_gl_LIBRARY})
 
 # find glew 2
-find_package(glew 2 REQUIRED)
+find_package(GLEW 2 REQUIRED)
 include_directories(${GLEW_INCLUDE_DIRS})
 target_link_libraries(glwrapper-test ${GLEW_LIBRARIES})
 
