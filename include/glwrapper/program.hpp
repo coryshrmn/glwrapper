@@ -26,9 +26,6 @@ class Program {
 private:
 
     // The ref pages are a disaster on this
-    // OpenGL ES lists some enum values which don't even exist
-    // e.g. "GL_GEOMETRY_LINKED_INPUT_TYPE" instead of "GL_GEOMETRY_INPUT_TYPE"
-    //
     // OpenGL ref doesn't list GL_INFO_LOG_LENGTH, but it should work.
     //
     // This ignores the ref pages, and lists all valid enums.

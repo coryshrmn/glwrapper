@@ -47,8 +47,6 @@ public:
         glBindVertexArray(0);
     }
 
-// DSA requires OpenGL 4.5+
-#ifdef GLWRAPPER_PROFILE_DESKTOP
     void setData(int size, const void* data, BufferUsage usage) {
         glNamedBufferData(bufferResource.getHandle(), size, data, static_cast<GLenum>(usage));
     }
@@ -56,7 +54,6 @@ public:
     void setSubData(std::intptr_t offset, int size, const void* data) {
         glNamedBufferSubData(bufferResource.getHandle(), offset, size, data);
     }
-#endif
 
     static void setData(BufferBindingTarget target, int size, const void* data, BufferUsage usage) {
         glBufferData(static_cast<GLenum>(target), size, data, static_cast<GLenum>(usage));
