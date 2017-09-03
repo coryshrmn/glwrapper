@@ -64,11 +64,13 @@ public:
         return shaderResource.getHandle() != 0;
     }
 
+#ifndef GLWRAPPER_NO_STRING_VIEW
     void setSource(detail::string_view source) {
         const char* data = source.data();
         int length = source.length();
         setSource(1, &data, &length);
     }
+#endif
 
     void setSource(const char* source) {
         setSource(1, &source);

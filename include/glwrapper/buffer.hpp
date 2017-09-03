@@ -32,7 +32,12 @@ enum class BufferBindingTarget {
     ELEMENT_ARRAY       = GL_ELEMENT_ARRAY_BUFFER,
     PIXEL_PACK          = GL_PIXEL_PACK_BUFFER,
     PIXEL_UNPACK        = GL_PIXEL_UNPACK_BUFFER,
+
+    // OpenGL ES does not support query buffers (as of version 3.2)
+#ifdef GLWRAPPER_PROFILE_DESKTOP
     QUERY               = GL_QUERY_BUFFER,
+#endif
+
     SHADER_STORAGE      = GL_SHADER_STORAGE_BUFFER,
     TEXTURE             = GL_TEXTURE_BUFFER,
     TRANSFORM_FEEDBACK  = GL_TRANSFORM_FEEDBACK_BUFFER,
@@ -76,6 +81,8 @@ public:
         glBindBuffer(static_cast<GLenum>(target), 0);
     }
 
+// DSA requires OpenGL 4.5+
+#ifdef GLWRAPPER_PROFILE_DESKTOP
     void setData(int size, const void* data, BufferUsage usage) {
         glNamedBufferData(bufferResource.getHandle(), size, data, static_cast<GLenum>(usage));
     }
@@ -83,6 +90,7 @@ public:
     void setSubData(std::intptr_t offset, int size, const void* data) {
         glNamedBufferSubData(bufferResource.getHandle(), offset, size, data);
     }
+#endif
 
     static void setData(BufferBindingTarget target, int size, const void* data, BufferUsage usage) {
         glBufferData(static_cast<GLenum>(target), size, data, static_cast<GLenum>(usage));

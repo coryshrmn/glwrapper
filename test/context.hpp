@@ -39,6 +39,12 @@ public:
             minorRequest = 2;
             break;
 
+        case glwrapper::Profile::ES:
+            sdlProfileRequest = SDL_GL_CONTEXT_PROFILE_ES;
+            majorRequest = 2;
+            minorRequest = 0;
+            break;
+
         default:
             throw std::runtime_error("unknown profile");
         }
