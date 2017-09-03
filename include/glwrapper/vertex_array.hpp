@@ -14,7 +14,7 @@ namespace detail {
     struct ResourceTraits<VertexArrayResourceTag> {
         using Handle = GLuint;
         static void destroy(Handle handle) {
-            glDeleteVertexArrays(1, handle);
+            glDeleteVertexArrays(1, &handle);
         }
     };
 
@@ -29,9 +29,17 @@ private:
 public:
     VertexArray() = default;
 
+    // allocates an uninitialized VAO
     void generate() {
         GLuint handle;
         glGenVertexArrays(1, &handle);
+        vertexArrayResource = {handle};
+    }
+
+    // uses DSA to initialize the VAO without binding, requires OpenGL 4.5 or *direct_state_access extension
+    void create() {
+        GLuint handle;
+        glCreateVertexArrays(1, &handle);
         vertexArrayResource = {handle};
     }
 
@@ -47,21 +55,15 @@ public:
         glBindVertexArray(0);
     }
 
-    void setData(int size, const void* data, BufferUsage usage) {
-        glNamedBufferData(bufferResource.getHandle(), size, data, static_cast<GLenum>(usage));
-    }
-
-    void setSubData(std::intptr_t offset, int size, const void* data) {
-        glNamedBufferSubData(bufferResource.getHandle(), offset, size, data);
-    }
-
-    static void setData(BufferBindingTarget target, int size, const void* data, BufferUsage usage) {
-        glBufferData(static_cast<GLenum>(target), size, data, static_cast<GLenum>(usage));
-    }
-
-    static void setSubData(BufferBindingTarget target, std::intptr_t offset, int size, const void* data) {
-        glBufferSubData(static_cast<GLenum>(target), offset, size, data);
-    }
+    //TODO
+    // * GetVertexArray(Indexed)
+    // * BindingDivisor
+    // * ElementBuffer
+    // * VertexBuffer(s)
+    // * Attrib functions
+    // Who really cares? VAO's are not useful.
+    // Some drivers perform like garbage with VAO switching,
+    // So we generally just bind one and use it the entire run.
 };
 
 } // namespace glwrapper

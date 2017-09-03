@@ -29,12 +29,17 @@ set(GLWRAPPER_HEADERS
     "include/glwrapper/uniform.hpp"
     "include/glwrapper/vertex_array.hpp"
 )
+set(GLWRAPPER_TEST_HEADERS
+    "test/context.hpp"
+)
 
 # main test
 add_executable(glwrapper-test
     test/error.cpp
     test/shader.cpp
+    test/vertex_array.cpp
     ${GLWRAPPER_HEADERS}
+    ${GLWRAPPER_TEST_HEADERS}
 )
 add_test(NAME glwrapper-test COMMAND glwrapper-test)
 
