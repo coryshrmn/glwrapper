@@ -10,10 +10,6 @@
         #error OpenGL header version not supported. GLWrapper can only use headers for OpenGL 4.5+
     #endif
 
-    #if !defined(GL_GLEXT_PROTOTYPES)
-        //#error GL_GLEXT_PROTOTYPES needs to be defined before including OpenGL headers
-    #endif
-
 #else
 
     // GLWrapper ships with its own OpenGL 4.5 headers
