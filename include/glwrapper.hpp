@@ -6,5 +6,13 @@
 #include "glwrapper/profile.hpp"
 
 #include "glwrapper/error.hpp"
+#include "glwrapper/buffer.hpp"
+#include "glwrapper/error.hpp"
+#include "glwrapper/profile.hpp"
+#include "glwrapper/program.hpp"
+#include "glwrapper/shader.hpp"
+#include "glwrapper/uniform.hpp"
+#include "glwrapper/vertex_array.hpp"
+
 
 #endif // #ifndef GLWRAPPER_HPP

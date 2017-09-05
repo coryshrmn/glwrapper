@@ -49,25 +49,25 @@ namespace detail {
         static ? get(GLint location)
     */
 
-    template <>
-    struct UniformTypeTraits<UniformType::FLOAT> {
-        static void set(GLint location, float value) {
-            glUniform1f(location, value);
-        }
-        static float get(GLint location) {
-            return glGetUniform1f(location);
-        }
-    };
+//    template <>
+//    struct UniformTypeTraits<UniformType::FLOAT> {
+//        static void set(GLint location, float value) {
+//            glUniform1f(location, value);
+//        }
+//        static float get(GLint location) {
+//            return glGetUniform1f(location);
+//        }
+//    };
 
-    template <>
-    struct UniformTypeTraits<UniformType::FLOAT2> {
-        static void set(GLint location, float value1, float value2) {
-            glUniform2f(location, value1, value2);
-        }
-        static float get(GLint location) {
-            return glGetUniform1f(location);
-        }
-    };
+//    template <>
+//    struct UniformTypeTraits<UniformType::FLOAT2> {
+//        static void set(GLint location, float value1, float value2) {
+//            glUniform2f(location, value1, value2);
+//        }
+//        static float get(GLint location) {
+//            return glGetUniform1f(location);
+//        }
+//    };
 
 } // namespace detail
 

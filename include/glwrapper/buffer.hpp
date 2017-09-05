@@ -14,7 +14,7 @@ namespace detail {
     struct ResourceTraits<BufferResourceTag> {
         using Handle = GLuint;
         static void destroy(Handle handle) {
-            glDeleteBuffers(1, handle);
+            glDeleteBuffers(1, &handle);
         }
     };
 
