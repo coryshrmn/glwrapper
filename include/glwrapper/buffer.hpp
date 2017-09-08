@@ -64,6 +64,12 @@ public:
         bufferResource = {handle};
     }
 
+    void create() {
+        GLuint handle;
+        glCreateBuffers(1, &handle);
+        bufferResource = {handle};
+    }
+
     bool exists() const {
         return bufferResource.getHandle() != 0;
     }
