@@ -5,6 +5,7 @@
 
 #include <sstream>
 #include <stdexcept>
+#include <functional>
 
 namespace glwrapper
 {
@@ -16,7 +17,7 @@ namespace glwrapper
  * @throws std::runtime_error   link failed
  * @throws std::bad_alloc       link failed and error message allocation failed
  */
-static Program programFromShaders(std::initializer_list<const Shader&> shaderList) {
+static Program programFromShaders(std::initializer_list<std::reference_wrapper<const Shader>> shaderList) {
     Program program;
     program.create();
 
@@ -36,7 +37,6 @@ static Program programFromShaders(std::initializer_list<const Shader&> shaderLis
 
     throw std::runtime_error(sstr.str());
 }
-
 
 } // namespace glwrapper
 
