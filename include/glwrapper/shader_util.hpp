@@ -4,6 +4,7 @@
 #include "glwrapper/shader.hpp"
 
 #include <sstream>
+#include <stdexcept>
 
 namespace glwrapper {
 

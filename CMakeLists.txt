@@ -25,6 +25,7 @@ set(GLWRAPPER_HEADERS
     "include/glwrapper/error.hpp"
     "include/glwrapper/profile.hpp"
     "include/glwrapper/program.hpp"
+    "include/glwrapper/program_util.hpp"
     "include/glwrapper/shader.hpp"
     "include/glwrapper/shader_util.hpp"
     "include/glwrapper/uniform.hpp"
