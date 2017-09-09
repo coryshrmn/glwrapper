@@ -26,7 +26,7 @@ set(GLWRAPPER_HEADERS
     "include/glwrapper/profile.hpp"
     "include/glwrapper/program.hpp"
     "include/glwrapper/shader.hpp"
-    "include/glwrapper/shader_utils.hpp"
+    "include/glwrapper/shader_util.hpp"
     "include/glwrapper/uniform.hpp"
     "include/glwrapper/vertex_array.hpp"
 )

@@ -1,12 +1,11 @@
-#ifndef SHADER_UTILS_HPP
-#define SHADER_UTILS_HPP
+#ifndef SHADER_UTIL_HPP
+#define SHADER_UTIL_HPP
 
 #include "glwrapper/shader.hpp"
 
 #include <sstream>
 
 namespace glwrapper {
-
 
 /**
  * @brief Create and compile a shader.
@@ -36,4 +35,4 @@ static Shader shaderFromSource(ShaderType shaderType, std::string_view source)
 } // namespace glwrapper
 
 
-#endif // SHADER_UTILS_HPP
+#endif // SHADER_UTIL_HPP
