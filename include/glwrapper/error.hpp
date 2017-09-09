@@ -4,6 +4,7 @@
 #include "glwrapper/profile.hpp"
 
 #include <stdexcept>
+#include <ostream>
 
 namespace glwrapper {
 
@@ -64,5 +65,10 @@ inline void checkError() {
 }
 
 } // namespace glwrapper
+
+static std::ostream& operator<<(std::ostream& out, const glwrapper::ErrorCode& errorCode)
+{
+    return out << glwrapper::getErrorName(errorCode);
+}
 
 #endif // #ifndef GLWRAPPER_ERROR_HPP

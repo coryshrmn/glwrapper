@@ -38,6 +38,17 @@ enum class ShaderType : GLenum {
     VERTEX = GL_VERTEX_SHADER
 };
 
+inline const char* getShaderTypeName(ShaderType shaderType) {
+    switch(shaderType) {
+    case ShaderType::COMPUTE: return "COMPUTE";
+    case ShaderType::FRAGMENT: return "FRAGMENT";
+    case ShaderType::GEOMETRY: return "GEOMETRY";
+    case ShaderType::TESS_CONTROL: return "TESS_CONTROL";
+    case ShaderType::VERTEX: return "VERTEX";
+    default: return "UNKNOWN_SHADER";
+    }
+}
+
 class Shader {
 private:
     enum class ShaderParameter : GLenum {
@@ -118,5 +129,10 @@ private:
 };
 
 } // namespace glwrapper
+
+static std::ostream& operator<<(std::ostream& out, const glwrapper::ShaderType& shaderType)
+{
+    return out << glwrapper::getShaderTypeName(shaderType);
+}
 
 #endif // #ifndef GLWRAPPER_SHADER_HPP
