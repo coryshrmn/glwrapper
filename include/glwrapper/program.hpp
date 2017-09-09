@@ -73,6 +73,10 @@ public:
         return programResource.getHandle() != 0;
     }
 
+    GLuint getHandle() const {
+        return programResource.getHandle();
+    }
+
     void attachShader(const Shader& shader) {
         glAttachShader(programResource.getHandle(), shader.getHandle());
     }
