@@ -35,6 +35,7 @@ set(GLWRAPPER_TEST_HEADERS
 
 # main test
 add_executable(glwrapper-test
+    test/buffer.cpp
     test/error.cpp
     test/program.cpp
     test/shader.cpp

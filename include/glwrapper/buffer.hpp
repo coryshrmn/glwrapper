@@ -10,7 +10,7 @@ namespace glwrapper {
 namespace detail {
 
     struct BufferDeleter {
-        static void destroy(GLuint handle) {
+        void operator()(GLuint handle) {
             glDeleteBuffers(1, &handle);
         }
     };
@@ -58,13 +58,13 @@ public:
     void generate() {
         GLuint handle;
         glGenBuffers(1, &handle);
-        bufferResource = {handle};
+        bufferResource = detail::BufferResource{handle};
     }
 
     void create() {
         GLuint handle;
         glCreateBuffers(1, &handle);
-        bufferResource = {handle};
+        bufferResource = detail::BufferResource{handle};
     }
 
     bool exists() const {
