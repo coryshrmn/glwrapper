@@ -29,6 +29,27 @@ private:
 public:
     VertexArray() = default;
 
+    enum class CreationMethod {
+        GENERATE,
+        CREATE,
+        CREATE_BIND
+    };
+
+    VertexArray(CreationMethod method) {
+        switch(method) {
+        case CreationMethod::GENERATE:
+            generate();
+            break;
+        case CreationMethod::CREATE:
+            create();
+            break;
+        case CreationMethod::CREATE_BIND:
+            generate();
+            bind();
+            break;
+        }
+    }
+
     // allocates an uninitialized VAO
     void generate() {
         GLuint handle;
