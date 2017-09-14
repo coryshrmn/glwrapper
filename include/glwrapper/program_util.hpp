@@ -17,7 +17,7 @@ namespace glwrapper
  * @throws std::runtime_error   link failed
  * @throws std::bad_alloc       link failed and error message allocation failed
  */
-Program programFromShaders(std::initializer_list<std::reference_wrapper<const Shader>> shaderList) {
+inline Program programFromShaders(std::initializer_list<std::reference_wrapper<const Shader>> shaderList) {
     Program program;
     program.create();
 
