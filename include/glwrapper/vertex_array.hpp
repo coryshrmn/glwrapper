@@ -3,22 +3,19 @@
 
 #include "glwrapper/profile.hpp"
 
-#include "glwrapper/detail/resource.hpp"
+#include "cwrapper/resource.hpp"
 
 namespace glwrapper {
 
 namespace detail {
-    struct VertexArrayResourceTag;
 
-    template <>
-    struct ResourceTraits<VertexArrayResourceTag> {
-        using Handle = GLuint;
-        static void destroy(Handle handle) {
+    struct VertexArrayDeleter {
+        void operator()(GLuint handle) {
             glDeleteVertexArrays(1, &handle);
         }
     };
 
-    using VertexArrayResource = Resource<VertexArrayResourceTag>;
+    using VertexArrayResource = cwrapper::Resource<GLuint, VertexArrayDeleter>;
 
 } // namespace detail
 
@@ -54,14 +51,14 @@ public:
     void generate() {
         GLuint handle;
         glGenVertexArrays(1, &handle);
-        vertexArrayResource = {handle};
+        vertexArrayResource = detail::VertexArrayResource{handle};
     }
 
     // uses DSA to initialize the VAO without binding, requires OpenGL 4.5 or *direct_state_access extension
     void create() {
         GLuint handle;
         glCreateVertexArrays(1, &handle);
-        vertexArrayResource = {handle};
+        vertexArrayResource = detail::VertexArrayResource{handle};
     }
 
     bool exists() const {

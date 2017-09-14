@@ -7,20 +7,18 @@
 
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
-set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 project(glwrapper-test)
+
 enable_testing()
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include_directories(include)
+include_directories("lib/cwrapper/include")
 
 set(GLWRAPPER_HEADERS
     "include/glwrapper.hpp"
     "include/glwrapper/buffer.hpp"
-    "include/glwrapper/detail/resource.hpp"
     "include/glwrapper/detail/string_view.hpp"
     "include/glwrapper/error.hpp"
     "include/glwrapper/profile.hpp"
@@ -38,12 +36,16 @@ set(GLWRAPPER_TEST_HEADERS
 # main test
 add_executable(glwrapper-test
     test/error.cpp
+    test/program.cpp
     test/shader.cpp
     test/vertex_array.cpp
     ${GLWRAPPER_HEADERS}
     ${GLWRAPPER_TEST_HEADERS}
 )
 add_test(NAME glwrapper-test COMMAND glwrapper-test)
+
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 
 # Download and compile Googletest library
 include(ExternalProject)

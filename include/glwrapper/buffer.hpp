@@ -3,22 +3,19 @@
 
 #include "glwrapper/profile.hpp"
 
-#include "glwrapper/detail/resource.hpp"
+#include "cwrapper/resource.hpp"
 
 namespace glwrapper {
 
 namespace detail {
-    struct BufferResourceTag;
 
-    template <>
-    struct ResourceTraits<BufferResourceTag> {
-        using Handle = GLuint;
-        static void destroy(Handle handle) {
+    struct BufferDeleter {
+        static void destroy(GLuint handle) {
             glDeleteBuffers(1, &handle);
         }
     };
 
-    using BufferResource = Resource<BufferResourceTag>;
+    using BufferResource = cwrapper::Resource<GLuint, BufferDeleter>;
 
 } // namespace detail
 

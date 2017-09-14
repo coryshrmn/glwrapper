@@ -5,6 +5,8 @@
 #include "glwrapper/profile.hpp"
 
 #include "glwrapper/shader.hpp"
+#include "glwrapper/program_util.hpp"
+#include "glwrapper/shader_util.hpp"
 
 #include <iostream>
 #include <string>
@@ -26,3 +28,22 @@
 using glwrapper::Shader;
 using glwrapper::ShaderType;
 using glwrapper::Program;
+
+constexpr const char* VERTEX_SHADER_SOURCE =
+        "#version 140\n"
+        "void main() {\n"
+        "    gl_Position = vec4(0.0);\n"
+        "}\n";
+
+constexpr const char* FRAGMENT_SHADER_SOURCE =
+        "#version 140\n"
+        "void main() {\n"
+        "    gl_FragColor = vec4(1.0);\n"
+        "}\n";
+
+TEST(Program, Link) {
+    Context context;
+    Shader vert = glwrapper::shaderFromSource(ShaderType::VERTEX, VERTEX_SHADER_SOURCE);
+    Shader frag = glwrapper::shaderFromSource(ShaderType::FRAGMENT, FRAGMENT_SHADER_SOURCE);
+    Program program = glwrapper::programFromShaders({vert, frag});
+}

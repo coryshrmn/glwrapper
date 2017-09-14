@@ -3,8 +3,8 @@
 
 #include "glwrapper/profile.hpp"
 
-#include "glwrapper/detail/resource.hpp"
 #include "glwrapper/detail/string_view.hpp"
+#include "cwrapper/resource.hpp"
 
 // unique_ptr
 #include <memory>
@@ -15,17 +15,14 @@
 namespace glwrapper {
 
 namespace detail {
-    struct ShaderResourceTag;
 
-    template <>
-    struct ResourceTraits<ShaderResourceTag> {
-        using Handle = GLuint;
-        static void destroy(Handle handle) {
+    struct ShaderDeleter {
+        void operator()(GLuint handle) {
             glDeleteShader(handle);
         }
     };
 
-    using ShaderResource = Resource<ShaderResourceTag>;
+    using ShaderResource = cwrapper::Resource<GLuint, ShaderDeleter>;
 
 } // namespace detail
 

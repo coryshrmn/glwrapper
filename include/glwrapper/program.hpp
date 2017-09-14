@@ -5,21 +5,19 @@
 
 #include "glwrapper/shader.hpp"
 #include "glwrapper/uniform.hpp"
+#include "cwrapper/resource.hpp"
 
 namespace glwrapper {
 
 namespace detail {
-    struct ProgramResourceTag;
 
-    template <>
-    struct ResourceTraits<ProgramResourceTag> {
-        using Handle = GLuint;
-        static void destroy(Handle handle) {
+    struct ProgramDeleter {
+        void operator()(GLuint handle) {
             glDeleteProgram(handle);
         }
     };
 
-    using ProgramResource = Resource<ProgramResourceTag>;
+    using ProgramResource = cwrapper::Resource<GLuint, ProgramDeleter>;
 } // namespace detail
 
 class Program {
@@ -66,7 +64,7 @@ public:
     Program() = default;
     
     void create() {
-        programResource = { glCreateProgram() };
+        programResource = detail::ProgramResource{glCreateProgram()};
     }
 
     bool exists() const {
