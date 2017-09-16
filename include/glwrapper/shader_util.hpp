@@ -16,7 +16,7 @@ namespace glwrapper {
  * @throws std::runtime_error   compilation failed
  * @throws std::bad_alloc       compilation failed and error message allocation failed
  */
-static Shader shaderFromSource(ShaderType shaderType, std::string_view source)
+inline Shader shaderFromSource(ShaderType shaderType, std::string_view source)
 {
     Shader shader(shaderType);
     shader.setSource(source);

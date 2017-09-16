@@ -50,7 +50,7 @@ enum class BufferUsage {
 
 class Buffer {
 private:
-    detail::BufferResource bufferResource;
+    detail::BufferResource bufferResource {};
 
 public:
     Buffer() = default;

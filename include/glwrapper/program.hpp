@@ -58,7 +58,7 @@ private:
         VALIDATE_STATUS                         = GL_VALIDATE_STATUS
     };
 
-    detail::ProgramResource programResource;
+    detail::ProgramResource programResource {};
 
 public:
     Program() = default;

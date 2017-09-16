@@ -21,7 +21,7 @@ namespace detail {
 
 class VertexArray {
 private:
-    detail::VertexArrayResource vertexArrayResource;
+    detail::VertexArrayResource vertexArrayResource {};
 
 public:
     VertexArray() = default;

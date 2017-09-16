@@ -66,7 +66,7 @@ inline void checkError() {
 
 } // namespace glwrapper
 
-static std::ostream& operator<<(std::ostream& out, const glwrapper::ErrorCode& errorCode)
+inline std::ostream& operator<<(std::ostream& out, const glwrapper::ErrorCode& errorCode)
 {
     return out << glwrapper::getErrorName(errorCode);
 }
