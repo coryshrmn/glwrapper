@@ -1,4 +1,3 @@
-// DOWNLOADED FROM https://raw.githubusercontent.com/tcbrindle/cpp17_headers/e719e2903ab8b6b967a862c9f4b2dbe0533f6cf4/include/stx/string_view.hpp
 /*
    � Copyright (c) Marshall Clow 2012-2015.
    � Copyright Beman Dawes 2015
