@@ -17,7 +17,7 @@
 
 # The glwrapper tests depend on:
 # SDL2
-# glew 2.0.0+
+# glew
 
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
@@ -92,8 +92,8 @@ target_link_libraries(glwrapper-test ${gtest_LIBRARIES})
 find_package(OpenGL REQUIRED)
 target_link_libraries(glwrapper-test ${OPENGL_gl_LIBRARY})
 
-# find glew 2
-find_package(GLEW 2 REQUIRED)
+# find glew
+find_package(GLEW REQUIRED)
 include_directories(${GLEW_INCLUDE_DIRS})
 target_link_libraries(glwrapper-test ${GLEW_LIBRARIES})
 
