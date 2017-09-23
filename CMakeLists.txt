@@ -59,8 +59,6 @@ add_executable(glwrapper-test
 )
 add_test(NAME glwrapper-test COMMAND glwrapper-test)
 
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 # cmake added c++17 support in version 3.8
 if(CMAKE_VERSION VERSION_LESS 3.8)
     if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
