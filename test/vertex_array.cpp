@@ -36,6 +36,7 @@ TEST(VertexArray, Generate) {
     ASSERT_EQ(vertexArray.exists(), true);
 }
 
+#ifdef GLWRAPPER_SUPPORTS_DSA
 TEST(VertexArray, Create) {
     Context context;
 
@@ -44,6 +45,7 @@ TEST(VertexArray, Create) {
     vertexArray.create();
     ASSERT_EQ(vertexArray.exists(), true);
 }
+#endif
 
 TEST(VertexArray, Delete) {
     Context context;

@@ -50,8 +50,8 @@ public:
 
         case glwrapper::Profile::DESKTOP:
             sdlProfileRequest = SDL_GL_CONTEXT_PROFILE_CORE;
-            majorRequest = 3;
-            minorRequest = 2;
+            majorRequest = 4;
+            minorRequest = 1;
             break;
 
         default:

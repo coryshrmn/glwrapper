@@ -25,6 +25,15 @@ using glwrapper::Buffer;
 using glwrapper::BufferBindingTarget;
 using glwrapper::BufferUsage;
 
+TEST(Buffer, Generate) {
+    Context context;
+
+    Buffer b;
+    b.generate();
+    b.bind(BufferBindingTarget::ARRAY);
+}
+
+#ifdef GLWRAPPER_SUPPORTS_DSA
 TEST(Buffer, Create) {
     Context context;
 
@@ -32,3 +41,4 @@ TEST(Buffer, Create) {
     b.create();
     b.bind(BufferBindingTarget::ARRAY);
 }
+#endif

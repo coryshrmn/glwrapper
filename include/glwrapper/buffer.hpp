@@ -76,11 +76,13 @@ public:
         bufferResource = detail::BufferResource{handle};
     }
 
+#ifdef GLWRAPPER_SUPPORTS_DSA
     void create() {
         GLuint handle;
         glCreateBuffers(1, &handle);
         bufferResource = detail::BufferResource{handle};
     }
+#endif
 
     bool exists() const {
         return bufferResource.getHandle() != 0;
@@ -94,6 +96,7 @@ public:
         glBindBuffer(static_cast<GLenum>(target), 0);
     }
 
+#ifdef GLWRAPPER_SUPPORTS_DSA
     void setData(int size, const void* data, BufferUsage usage) {
         glNamedBufferData(bufferResource.getHandle(), size, data, static_cast<GLenum>(usage));
     }
@@ -101,6 +104,7 @@ public:
     void setSubData(std::intptr_t offset, int size, const void* data) {
         glNamedBufferSubData(bufferResource.getHandle(), offset, size, data);
     }
+#endif
 
     static void setData(BufferBindingTarget target, int size, const void* data, BufferUsage usage) {
         glBufferData(static_cast<GLenum>(target), size, data, static_cast<GLenum>(usage));

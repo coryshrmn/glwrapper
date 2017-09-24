@@ -4,7 +4,7 @@ Header-only C++17 wrapper for modern OpenGL
 
 ## Features
 
-* Support for 4.5-4.6 core profile
+* Support for OpenGL 4.1-4.6 core profile
 
 * C++11 syntax, RAII with move support
 
@@ -14,8 +14,6 @@ Header-only C++17 wrapper for modern OpenGL
   Some functions allocate for convenience; they have an "Alloc" suffix.
 
 * Header-only
-
-* Packages OpenGL headers (if you don't include your own before GLWrapper).
 
 * Somewhat tested
 
@@ -48,15 +46,14 @@ Barely started. Initial goal is to support use cases for my game.
 
 ### Including GLWrapper
 
+You must include OpenGL headers before including glwrapper.
+
 You can add the [include](include) directory to your project,
 and add `#include "glwrapper.hpp"` in your code.
 GLWrapper will work out of the box.
 
-If you include your own OpenGL 4.5+ header files before including GLWrapper,
-then you don't need the [GL](include/GL) directory.
-
 If your compiler has full C++17 support,
-you use `boost::string_view` by defining `GLWRAPPER_BOOST_STRING_VIEW`,
+or you use `boost::string_view` by defining `GLWRAPPER_BOOST_STRING_VIEW`,
 then you don't need the [stx](stx) directory.
 
 ### Compling GLWrapper

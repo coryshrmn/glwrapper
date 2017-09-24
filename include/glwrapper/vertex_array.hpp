@@ -43,8 +43,11 @@ public:
 
     enum class CreationMethod {
         GENERATE,
+        GENERATE_BIND,
+#ifdef GLWRAPPER_SUPPORTS_DSA
         CREATE,
         CREATE_BIND
+#endif
     };
 
     VertexArray(CreationMethod method) {
@@ -52,13 +55,19 @@ public:
         case CreationMethod::GENERATE:
             generate();
             break;
+        case CreationMethod::GENERATE_BIND:
+            generate();
+            bind();
+            break;
+#ifdef GLWRAPPER_SUPPORTS_DSA
         case CreationMethod::CREATE:
             create();
             break;
         case CreationMethod::CREATE_BIND:
-            generate();
+            create();
             bind();
             break;
+#endif
         }
     }
 
@@ -70,11 +79,13 @@ public:
     }
 
     // uses DSA to initialize the VAO without binding, requires OpenGL 4.5 or *direct_state_access extension
+#ifdef GLWRAPPER_SUPPORTS_DSA
     void create() {
         GLuint handle;
         glCreateVertexArrays(1, &handle);
         vertexArrayResource = detail::VertexArrayResource{handle};
     }
+#endif
 
     bool exists() const {
         return vertexArrayResource.getHandle() != 0;
