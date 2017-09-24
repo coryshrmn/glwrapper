@@ -32,7 +32,8 @@ enum class ErrorCode : GLenum {
     STACK_UNDERFLOW = GL_STACK_UNDERFLOW,
     OUT_OF_MEMORY = GL_OUT_OF_MEMORY,
     INVALID_FRAMEBUFFER_OPERATION = GL_INVALID_FRAMEBUFFER_OPERATION,
-    CONTEXT_LOST = GL_CONTEXT_LOST
+    // GL_CONTEXT_LOST is not defined until OpenGL 4.5
+    CONTEXT_LOST = 0x0507
 };
 
 inline const char* getErrorName(ErrorCode errorCode) {
