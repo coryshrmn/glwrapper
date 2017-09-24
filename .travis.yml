@@ -35,7 +35,7 @@ before_script:
     - sleep 3
 script:
     - cd ${TRAVIS_BUILD_DIR}/build
-    - env DISPLAY=:99.0 ./glwrapper-test
+    - env DISPLAY=:99 ./glwrapper-test
 notifications:
     email:
         on_success: change

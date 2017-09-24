@@ -39,7 +39,7 @@ public:
     Context() {
 
         if(SDL_Init(SDL_INIT_VIDEO) != 0) {
-            throw std::runtime_error("SDLInit");
+            throw std::runtime_error(SDL_GetError());
         }
 
         int sdlProfileRequest;
@@ -64,12 +64,12 @@ public:
 
         window = SDL_CreateWindow("glwrapper-test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_HIDDEN | SDL_WINDOW_OPENGL);
         if(!window) {
-            throw std::runtime_error("SDL_CreateWindow");
+            throw std::runtime_error(SDL_GetError());
         }
 
         glContext = SDL_GL_CreateContext(window);
         if(!glContext) {
-            throw std::runtime_error("SDL_GL_CreateContext");
+            throw std::runtime_error(SDL_GetError());
         }
 
         if(glewInit() != GLEW_OK) {
