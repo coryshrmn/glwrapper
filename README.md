@@ -1,4 +1,4 @@
-# GLWrapper [![Build Status](https://travis-ci.org/coryshrmn/glwrapper.svg?branch=master)](https://travis-ci.org/coryshrmn/glwrapper)
+# GLWrapper
 
 Header-only C++17 wrapper for modern OpenGL
 
