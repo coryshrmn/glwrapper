@@ -61,6 +61,8 @@ add_test(NAME glwrapper-test COMMAND glwrapper-test)
 
 # cmake added c++17 support in version 3.8
 if(CMAKE_VERSION VERSION_LESS 3.8)
+    # hack: enable c++17 manually for CMake < 3.8,
+    #       older compilers may error with the flag
     if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z")
     endif()
