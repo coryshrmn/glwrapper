@@ -43,7 +43,7 @@ private:
     //
     // This ignores the ref pages, and lists all valid enums.
     enum class ProgramParameter : GLenum {
-        ACTIVE_ATOMIC_COUNTER_BUFFERS           = GL_ACTIVE_ATOMIC_COUNTER_BUFFERS,
+        ACTIVE_ATOMIC_COUNTER_BUFFERS           = 0x92D9,
         ACTIVE_ATTRIBUTES                       = GL_ACTIVE_ATTRIBUTES,
         ACTIVE_ATTRIBUTE_MAX_LENGTH             = GL_ACTIVE_ATTRIBUTE_MAX_LENGTH,
         ACTIVE_UNIFORMS                         = GL_ACTIVE_UNIFORMS,
@@ -51,7 +51,7 @@ private:
         ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH    = GL_ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH,
         ACTIVE_UNIFORM_MAX_LENGTH               = GL_ACTIVE_UNIFORM_MAX_LENGTH,
         ATTACHED_SHADERS                        = GL_ATTACHED_SHADERS,
-        COMPUTE_WORK_GROUP_SIZE                 = GL_COMPUTE_WORK_GROUP_SIZE,
+        COMPUTE_WORK_GROUP_SIZE                 = 0x8267,
         DELETE_STATUS                           = GL_DELETE_STATUS,
         GEOMETRY_INPUT_TYPE                     = GL_GEOMETRY_INPUT_TYPE,
         GEOMETRY_OUTPUT_TYPE                    = GL_GEOMETRY_OUTPUT_TYPE,

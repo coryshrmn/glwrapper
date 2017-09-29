@@ -42,7 +42,7 @@ namespace detail {
 } // namespace detail
 
 enum class ShaderType : GLenum {
-    COMPUTE = GL_COMPUTE_SHADER,
+    COMPUTE = 0x91B9,
     FRAGMENT = GL_FRAGMENT_SHADER,
     GEOMETRY = GL_GEOMETRY_SHADER,
     TESS_CONTROL = GL_TESS_CONTROL_SHADER,
