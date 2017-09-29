@@ -38,7 +38,7 @@ inline Shader shaderFromSource(ShaderType shaderType, std::string_view source)
     shader.compile();
 
     if(shader.getCompileSucceeded()) {
-        return std::move(shader);
+        return shader;
     }
 
     std::ostringstream sstr;

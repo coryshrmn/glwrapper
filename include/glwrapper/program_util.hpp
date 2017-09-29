@@ -43,7 +43,7 @@ inline Program programFromShaders(std::initializer_list<std::reference_wrapper<c
     program.link();
 
     if(program.getLinkSucceeded()) {
-        return std::move(program);
+        return program;
     }
 
     std::ostringstream sstr;
