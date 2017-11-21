@@ -31,17 +31,21 @@ include_directories(include)
 include_directories("lib/cwrapper/include")
 
 set(GLWRAPPER_HEADERS
-    "include/glwrapper.hpp"
+
+# AUTO_INSERT include
     "include/glwrapper/buffer.hpp"
     "include/glwrapper/detail/string_view.hpp"
     "include/glwrapper/error.hpp"
+    "include/glwrapper.hpp"
     "include/glwrapper/profile.hpp"
     "include/glwrapper/program.hpp"
     "include/glwrapper/program_util.hpp"
     "include/glwrapper/shader.hpp"
     "include/glwrapper/shader_util.hpp"
+    "include/glwrapper/texture.hpp"
     "include/glwrapper/uniform.hpp"
     "include/glwrapper/vertex_array.hpp"
+
 )
 set(GLWRAPPER_TEST_HEADERS
     "test/context.hpp"

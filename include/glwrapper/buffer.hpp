@@ -20,6 +20,8 @@
 
 #include "cwrapper/resource.hpp"
 
+#include <cstdint>
+
 namespace glwrapper {
 
 namespace detail {
