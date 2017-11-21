@@ -45,6 +45,28 @@ enum class TextureTarget : GLenum
     T_2D_MULTISAMPLE_ARRAY = GL_TEXTURE_2D_MULTISAMPLE_ARRAY
 };
 
+enum class TexturePName : GLenum
+{
+    DEPTH_STENCIL_MODE = GL_DEPTH_STENCIL_TEXTURE_MODE,
+    BASE_LEVEL = GL_TEXTURE_BASE_LEVEL,
+    COMPARE_FUNC = GL_TEXTURE_COMPARE_FUNC,
+    COMPARE_MODE = GL_TEXTURE_COMPARE_MODE,
+    LOD_BIAS = GL_TEXTURE_LOD_BIAS,
+    MIN_FILTER = GL_TEXTURE_MIN_FILTER,
+    MAG_FILTER = GL_TEXTURE_MAG_FILTER,
+    MIN_LOD = GL_TEXTURE_MIN_LOD,
+    MAX_LOD = GL_TEXTURE_MAX_LOD,
+    MAX_LEVEL = GL_TEXTURE_MAX_LEVEL,
+    SWIZZLE_R = GL_TEXTURE_SWIZZLE_R,
+    SWIZZLE_G = GL_TEXTURE_SWIZZLE_G,
+    SWIZZLE_B = GL_TEXTURE_SWIZZLE_B,
+    SWIZZLE_A = GL_TEXTURE_SWIZZLE_A,
+    WRAP_S = GL_TEXTURE_WRAP_S,
+    WRAP_T = GL_TEXTURE_WRAP_T,
+    WRAP_R = GL_TEXTURE_WRAP_R,
+    BORDER_COLOR = GL_TEXTURE_BORDER_COLOR,
+    SWIZZLE_RGBA = GL_TEXTURE_SWIZZLE_RGBA
+};
 
 class Texture
 {
@@ -79,6 +101,19 @@ public:
     static void unbind(TextureTarget target) {
         glBindTexture(static_cast<GLenum>(target), 0);
     }
+
+#ifdef GLWRAPPER_SUPPORTS_DSA
+    // TODO DSA parameter (glTextureParameter...)
+#endif
+
+    template <typename T>
+    static void parameter(TexturePName pname, T param);
+    // TODO
+
+    template <typename T>
+    static T getParameter(TexturePName pname);
+    // TODO
+
 };
 
 } // namespace glwrapper
