@@ -25,6 +25,25 @@
 namespace glwrapper
 {
 
+namespace detail
+{
+
+
+template <typename... Shaders>
+void attachShaders(Program& program, const Shader& shader, Shaders&&... moreShaders)
+{
+    attachShaders(program, shader);
+    attachShaders(program, std::forward<Shaders>(moreShaders)...);
+}
+
+template <>
+inline void attachShaders(Program& program, const Shader& shader)
+{
+    program.attachShader(shader);
+}
+
+} // namespace detail
+
 /**
  * @brief Create, attach shaders to, and link a program.
  * @param shaderList
@@ -32,13 +51,13 @@ namespace glwrapper
  * @throws std::runtime_error   link failed
  * @throws std::bad_alloc       link failed and error message allocation failed
  */
-inline Program programFromShaders(std::initializer_list<std::reference_wrapper<const Shader>> shaderList) {
+template <typename... Shaders>
+Program programFromShaders(Shaders&&... shaders)
+{
     Program program;
     program.create();
 
-    for(const Shader& shader : shaderList) {
-        program.attachShader(shader);
-    }
+    detail::attachShaders(program, std::forward<Shaders>(shaders)...);
 
     program.link();
 
