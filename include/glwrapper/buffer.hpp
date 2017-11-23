@@ -36,7 +36,7 @@ namespace detail {
 
 } // namespace detail
 
-enum class BufferBindingTarget {
+enum class BufferTarget {
     ARRAY               = GL_ARRAY_BUFFER,
     ATOMIC_COUNTER      = 0x92C0,
     COPY_READ           = GL_COPY_READ_BUFFER,
@@ -90,11 +90,11 @@ public:
         return bufferResource.getHandle() != 0;
     }
 
-    void bind(BufferBindingTarget target) const {
+    void bind(BufferTarget target) const {
         glBindBuffer(static_cast<GLenum>(target), bufferResource.getHandle());
     }
 
-    static void unbind(BufferBindingTarget target) {
+    static void unbind(BufferTarget target) {
         glBindBuffer(static_cast<GLenum>(target), 0);
     }
 
@@ -108,11 +108,11 @@ public:
     }
 #endif
 
-    static void setData(BufferBindingTarget target, int size, const void* data, BufferUsage usage) {
+    static void setData(BufferTarget target, int size, const void* data, BufferUsage usage) {
         glBufferData(static_cast<GLenum>(target), size, data, static_cast<GLenum>(usage));
     }
 
-    static void setSubData(BufferBindingTarget target, std::intptr_t offset, int size, const void* data) {
+    static void setSubData(BufferTarget target, std::intptr_t offset, int size, const void* data) {
         glBufferSubData(static_cast<GLenum>(target), offset, size, data);
     }
 };
