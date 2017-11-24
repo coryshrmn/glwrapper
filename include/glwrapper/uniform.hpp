@@ -18,6 +18,22 @@
 
 #include "glwrapper/profile.hpp"
 
+#include <cgs/assert.hpp>
+
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
+
+#include <glm/mat2x2.hpp>
+#include <glm/mat2x3.hpp>
+#include <glm/mat2x4.hpp>
+#include <glm/mat3x2.hpp>
+#include <glm/mat3x3.hpp>
+#include <glm/mat3x4.hpp>
+#include <glm/mat4x2.hpp>
+#include <glm/mat4x3.hpp>
+#include <glm/mat4x4.hpp>
+
 #include <array>
 
 namespace glwrapper {
@@ -46,61 +62,181 @@ enum class UniformType {
     MATRIX4X3
 };
 
+
 namespace detail {
-    template <UniformType T>
-    struct UniformTypeTraits;
-    /*
-        using Value = // primitive type
 
-        constexpr std::size_t getCount();
+template <typename T>
+void setUniformArray(GLint location, const T* start, GLsizei count);
 
-        constexpr 
+template <>
+inline void setUniformArray(GLint location, const GLfloat* start, GLsizei count)
+{
+    glUniform1fv(location, count, start);
+}
 
-    */
-    /*
-        template <typename... Args>
-        static void set(GLint location, Args... args);
-        // primitive, or std::array
-        static ? get(GLint location)
-    */
+template <>
+inline void setUniformArray(GLint location, const GLint* start, GLsizei count)
+{
+    glUniform1iv(location, count, start);
+}
 
-//    template <>
-//    struct UniformTypeTraits<UniformType::FLOAT> {
-//        static void set(GLint location, float value) {
-//            glUniform1f(location, value);
-//        }
-//        static float get(GLint location) {
-//            return glGetUniform1f(location);
-//        }
-//    };
+template <>
+inline void setUniformArray(GLint location, const GLuint* start, GLsizei count)
+{
+    glUniform1uiv(location, count, start);
+}
 
-//    template <>
-//    struct UniformTypeTraits<UniformType::FLOAT2> {
-//        static void set(GLint location, float value1, float value2) {
-//            glUniform2f(location, value1, value2);
-//        }
-//        static float get(GLint location) {
-//            return glGetUniform1f(location);
-//        }
-//    };
+template <>
+inline void setUniformArray(GLint location, const glm::vec2* start, GLsizei count)
+{
+    glUniform2fv(location, count, &(*start)[0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::vec3* start, GLsizei count)
+{
+    glUniform3fv(location, count, &(*start)[0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::vec4* start, GLsizei count)
+{
+    glUniform4fv(location, count, &(*start)[0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::i32vec2* start, GLsizei count)
+{
+    glUniform2iv(location, count, &(*start)[0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::i32vec3* start, GLsizei count)
+{
+    glUniform3iv(location, count, &(*start)[0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::i32vec4* start, GLsizei count)
+{
+    glUniform4iv(location, count, &(*start)[0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::u32vec2* start, GLsizei count)
+{
+    glUniform2uiv(location, count, &(*start)[0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::u32vec3* start, GLsizei count)
+{
+    glUniform3uiv(location, count, &(*start)[0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::u32vec4* start, GLsizei count)
+{
+    glUniform4uiv(location, count, &(*start)[0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::mat2* start, GLsizei count)
+{
+    glUniformMatrix2fv(location, count, false, &(*start)[0][0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::mat2x3* start, GLsizei count)
+{
+    glUniformMatrix2x3fv(location, count, false, &(*start)[0][0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::mat2x4* start, GLsizei count)
+{
+    glUniformMatrix2x4fv(location, count, false, &(*start)[0][0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::mat3* start, GLsizei count)
+{
+    glUniformMatrix3fv(location, count, false, &(*start)[0][0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::mat3x2* start, GLsizei count)
+{
+    glUniformMatrix3x2fv(location, count, false, &(*start)[0][0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::mat3x4* start, GLsizei count)
+{
+    glUniformMatrix3x4fv(location, count, false, &(*start)[0][0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::mat4* start, GLsizei count)
+{
+    glUniformMatrix4fv(location, count, false, &(*start)[0][0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::mat4x2* start, GLsizei count)
+{
+    glUniformMatrix4x2fv(location, count, false, &(*start)[0][0]);
+}
+
+template <>
+inline void setUniformArray(GLint location, const glm::mat4x3* start, GLsizei count)
+{
+    glUniformMatrix4x3fv(location, count, false, &(*start)[0][0]);
+}
 
 } // namespace detail
 
+// single element uniforms
 template <typename T>
-class Uniform {
-private:
-    GLint location;
-
+class Uniform
+{
 public:
-    Uniform() = default;
 
-    explicit Uniform(GLint location)
-        : location(location)
-    { }
+    GLint location = -1;
 
-
+    void set(const T& val) const
+    {
+        detail::setUniformArray(location, &val, 1);
+    }
 };
 
-} // namespace glwrapper
+// array uniforms
+template <typename T>
+struct Uniform<T[]>
+{
+public:
+
+    GLint location = -1;
+
+    void set(const T* start, std::int32_t count) const
+    {
+        cgs_assert(start != nullptr);
+        detail::setUniformArray(location, start, count);
+    }
+};
+
+#ifdef GLWRAPPER_SUPPORTS_DSA
+template <typename T>
+class ProgramUniform
+{
+    // TODO
+};
+
+template <typename T>
+class ProgramUniform<T[]>
+{
+    // TODO
+};
+#endif // GLWRAPPER_SUPPORTS_DSA
 
 #endif // #ifndef GLWRAPPER_UNIFORM_HPP
