@@ -29,6 +29,11 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include_directories(include)
 include_directories("lib/cwrapper/include")
+include_directories("lib/cgs/include")
+
+# find glm
+find_package(GLM REQUIRED)
+include_directories(${GLM_INCLUDE_DIRS})
 
 set(GLWRAPPER_HEADERS
 

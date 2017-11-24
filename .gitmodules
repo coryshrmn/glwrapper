@@ -1,3 +1,6 @@
 [submodule "lib/cwrapper"]
 	path = lib/cwrapper
 	url = https://github.com/coryshrmn/cwrapper.git
+[submodule "lib/cgs"]
+	path = lib/cgs
+	url = https://github.com/coryshrmn/cgs.git
