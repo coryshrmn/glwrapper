@@ -227,4 +227,6 @@ class ProgramUniform<T[]>
 };
 #endif // GLWRAPPER_SUPPORTS_DSA
 
+} // namespace glwrapper
+
 #endif // #ifndef GLWRAPPER_UNIFORM_HPP
