@@ -33,12 +33,7 @@
 //    UNSIGNED_INT_10F_11F_11F_REV = GL_UNSIGNED_INT_10F_11F_11F_REV
 //};
 //
-//template <
-//    typename T,
-//    std::int32_t size,
-//    typename = std::enable_if_t<
-//        ( (0 < size && size < 5) || size == GL_BGRA )
-//        &&
+//template <typename T>
 //struct Attribute
 //{
 //public:
@@ -65,7 +60,7 @@
 //    // needs different signatures, for float with int data (normalized bool)
 //
 //    template <AttributeDataType T2, typename =
-//    void
+//    //void
 //};
 //
 //template <typename T>
@@ -97,4 +92,3 @@
 //} // namespace glwrapper
 //
 //#endif // GLWRAPPER_ATTRIBUTE_HPP
-//
