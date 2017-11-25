@@ -132,7 +132,6 @@ public:
         glUseProgram(programResource.getHandle());
     }
 
-private:
     int getParameterValue(ProgramParameter parameter) const {
         int result;
         glGetProgramiv(programResource.getHandle(), static_cast<GLenum>(parameter), &result);

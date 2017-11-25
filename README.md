@@ -25,6 +25,9 @@ Barely started. Initial goal is to support use cases for my game.
 
 * errors (error codes, error names, get error, check error and throw)
 * shaders (compile, get compilation status and info log)
+* programs
+* uniforms
+* buffers
 
 ### Roadmap
 
