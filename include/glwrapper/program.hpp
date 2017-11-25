@@ -19,7 +19,6 @@
 #include "glwrapper/profile.hpp"
 
 #include "glwrapper/shader.hpp"
-#include "glwrapper/uniform.hpp"
 #include "cwrapper/resource.hpp"
 
 namespace glwrapper {
@@ -125,9 +124,8 @@ public:
         return { std::move(buffer), sizeNoNull };
     }
 
-    template <typename T>
-    Uniform<T> getUniform(const char* name) const {
-        return { glGetUniformLocation(programResource.getHandle(), name) };
+    GLint getUniformLocation(const char* name) const {
+        return glGetUniformLocation(programResource.getHandle(), name);
     }
 
     void use() const {
