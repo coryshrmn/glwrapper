@@ -20,19 +20,7 @@
 
 #include <cgs/assert.hpp>
 
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
-#include <glm/vec4.hpp>
-
-#include <glm/mat2x2.hpp>
-#include <glm/mat2x3.hpp>
-#include <glm/mat2x4.hpp>
-#include <glm/mat3x2.hpp>
-#include <glm/mat3x3.hpp>
-#include <glm/mat3x4.hpp>
-#include <glm/mat4x2.hpp>
-#include <glm/mat4x3.hpp>
-#include <glm/mat4x4.hpp>
+#include "glwrapper/glm_types.hpp"
 
 #include <array>
 
@@ -87,109 +75,109 @@ inline void setUniformArray(GLint location, const GLuint* start, GLsizei count)
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::vec2* start, GLsizei count)
+inline void setUniformArray(GLint location, const vec2* start, GLsizei count)
 {
     glUniform2fv(location, count, &(*start)[0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::vec3* start, GLsizei count)
+inline void setUniformArray(GLint location, const vec3* start, GLsizei count)
 {
     glUniform3fv(location, count, &(*start)[0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::vec4* start, GLsizei count)
+inline void setUniformArray(GLint location, const vec4* start, GLsizei count)
 {
     glUniform4fv(location, count, &(*start)[0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::i32vec2* start, GLsizei count)
+inline void setUniformArray(GLint location, const i32vec2* start, GLsizei count)
 {
     glUniform2iv(location, count, &(*start)[0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::i32vec3* start, GLsizei count)
+inline void setUniformArray(GLint location, const i32vec3* start, GLsizei count)
 {
     glUniform3iv(location, count, &(*start)[0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::i32vec4* start, GLsizei count)
+inline void setUniformArray(GLint location, const i32vec4* start, GLsizei count)
 {
     glUniform4iv(location, count, &(*start)[0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::u32vec2* start, GLsizei count)
+inline void setUniformArray(GLint location, const u32vec2* start, GLsizei count)
 {
     glUniform2uiv(location, count, &(*start)[0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::u32vec3* start, GLsizei count)
+inline void setUniformArray(GLint location, const u32vec3* start, GLsizei count)
 {
     glUniform3uiv(location, count, &(*start)[0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::u32vec4* start, GLsizei count)
+inline void setUniformArray(GLint location, const u32vec4* start, GLsizei count)
 {
     glUniform4uiv(location, count, &(*start)[0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::mat2* start, GLsizei count)
+inline void setUniformArray(GLint location, const mat2* start, GLsizei count)
 {
     glUniformMatrix2fv(location, count, false, &(*start)[0][0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::mat2x3* start, GLsizei count)
+inline void setUniformArray(GLint location, const mat2x3* start, GLsizei count)
 {
     glUniformMatrix2x3fv(location, count, false, &(*start)[0][0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::mat2x4* start, GLsizei count)
+inline void setUniformArray(GLint location, const mat2x4* start, GLsizei count)
 {
     glUniformMatrix2x4fv(location, count, false, &(*start)[0][0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::mat3* start, GLsizei count)
+inline void setUniformArray(GLint location, const mat3* start, GLsizei count)
 {
     glUniformMatrix3fv(location, count, false, &(*start)[0][0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::mat3x2* start, GLsizei count)
+inline void setUniformArray(GLint location, const mat3x2* start, GLsizei count)
 {
     glUniformMatrix3x2fv(location, count, false, &(*start)[0][0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::mat3x4* start, GLsizei count)
+inline void setUniformArray(GLint location, const mat3x4* start, GLsizei count)
 {
     glUniformMatrix3x4fv(location, count, false, &(*start)[0][0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::mat4* start, GLsizei count)
+inline void setUniformArray(GLint location, const mat4* start, GLsizei count)
 {
     glUniformMatrix4fv(location, count, false, &(*start)[0][0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::mat4x2* start, GLsizei count)
+inline void setUniformArray(GLint location, const mat4x2* start, GLsizei count)
 {
     glUniformMatrix4x2fv(location, count, false, &(*start)[0][0]);
 }
 
 template <>
-inline void setUniformArray(GLint location, const glm::mat4x3* start, GLsizei count)
+inline void setUniformArray(GLint location, const mat4x3* start, GLsizei count)
 {
     glUniformMatrix4x3fv(location, count, false, &(*start)[0][0]);
 }
