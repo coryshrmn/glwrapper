@@ -192,6 +192,11 @@ public:
 
     GLint location = -1;
 
+    bool exists() const
+    {
+        return location >= 0;
+    }
+
     void set(const T& val) const
     {
         detail::setUniformArray(location, &val, 1);
@@ -205,6 +210,11 @@ struct Uniform<T[]>
 public:
 
     GLint location = -1;
+
+    bool exists() const
+    {
+        return location >= 0;
+    }
 
     void set(const T* start, std::int32_t count) const
     {

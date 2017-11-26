@@ -128,6 +128,10 @@ public:
         return glGetUniformLocation(programResource.getHandle(), name);
     }
 
+    GLint getAttribLocation(const char* name) const {
+        return glGetAttribLocation(programResource.getHandle(), name);
+    }
+
     void use() const {
         glUseProgram(programResource.getHandle());
     }
