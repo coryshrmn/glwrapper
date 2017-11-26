@@ -20,6 +20,7 @@
 // it verifies OpenGL headers are included, and defines Profile enum and getProfile()
 #include "glwrapper/profile.hpp"
 
+#include "glwrapper/attribute.hpp"
 #include "glwrapper/buffer.hpp"
 #include "glwrapper/error.hpp"
 #include "glwrapper/profile.hpp"
