@@ -94,8 +94,8 @@ struct AttributePointer<float, Count, SourceType>
 {
     void set(GLint location, GLsizei stride, const GLvoid* offset)
     {
-        constexpr GLenum cSourceType = static_cast<GLenum>(SourceType);
-        constexpr bool normalized = (cSourceType & ATTRIBUTE_SOURCE_TYPE_NORMALIZATION_BIT) != 0;
+        constexpr GLenum cSourceType = static_cast<GLenum>(SourceType) & ~ATTRIBUTE_SOURCE_TYPE_NORMALIZATION_BIT;
+        constexpr bool normalized = AttributeSourceTypeTraits<SourceType>::normalized;
 
         glVertexAttribPointer(location, Count, cSourceType, normalized, stride, offset);
     }
@@ -129,6 +129,7 @@ struct AttributePointer<
     std::enable_if_t<
         std::is_integral<T>::value
         && AttributeSourceTypeTraits<SourceType>::integral
+        && !AttributeSourceTypeTraits<SourceType>::normalized
     >
 >
 {
